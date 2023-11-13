@@ -1,0 +1,16 @@
+1 задание
+SELECT C.login,
+COUNT(O.id) AS "order_count"
+FROM "Orders" AS O
+INNER JOIN "Couriers" AS C ON C.id = O."CourierId"
+WHERE O. "inDelivery" = true
+GROUP BY C.login;
+
+2 задание
+
+SELECT track
+FROM "Orders" AS O
+WHERE O."finished" = true
+OR O."cancelled" = true
+OR O."inDelivery" = true;
+
