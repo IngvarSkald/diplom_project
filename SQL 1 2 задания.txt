@@ -1,16 +1,18 @@
 1 задание
 SELECT C.login,
-COUNT(O.id) AS "order_count"
-FROM "Orders" AS O
-INNER JOIN "Couriers" AS C ON C.id = O."CourierId"
+COUNT(*) 
+FROM "Couriers" AS C
+INNER JOIN "Orders" AS O ON O."CourierId" = c.id
 WHERE O. "inDelivery" = true
 GROUP BY C.login;
 
 2 задание
 
-SELECT track
-FROM "Orders" AS O
-WHERE O."finished" = true
-OR O."cancelled" = true
-OR O."inDelivery" = true;
+SELECT O.track,
+CASE WHEN O."finished" = true THEN 2
+WHEN O."cancelled" = true THEN -1
+WHEN O."inDelivery" = true THEN 1
+ELSE 0
+END
+FROM "Orders" AS O;
 
